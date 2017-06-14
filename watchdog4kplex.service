@@ -1,0 +1,12 @@
+[Unit]
+Description=watchdog daemon
+After=udev.service
+
+[Service]
+Type=forking
+PIDFile=/var/run/watchdogKplex.pid
+ExecStop=/usr/bin/watchdog.py stop
+ExecStart=/usr/bin/watchdog.py start
+
+[Install]
+WantedBy=multi-user.target

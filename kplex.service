@@ -1,0 +1,13 @@
+[Unit]
+Description=Kplex daemon systemd version
+After=watchdog4kplex.service
+
+[Service]
+Type=forking
+ExecStop=/bin/kill $MAINPID
+ExecStart=/usr/bin/kplex -d 9 -f /etc/kplex.conf -o mode=background
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
